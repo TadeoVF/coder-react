@@ -1,0 +1,132 @@
+<!-- clase 01 -->
+
+<!-- react es una libreria de JS para construir interfaces de usuario, que son la manera que tiene el usuario de interactuar con la página-->
+
+<!--React esta basado en componentes, un componente es un conjunto de elementos que cumplen una funcion específica, ej: un boton-->
+
+<!--utiliza codigo declarativo, que es un estilo de programacion en el que se declaran las intenciones y la lógica detrlas de un componente en vez de especificar como se realizan los pasos para lograrlo. Por otro lado, JS nativo es un codigo imperativo, que es un estilo que especifica los pasos detallados para lograrlo-->
+
+<!-- una expresion es una pregunta  a la cual puede ser respondida con un valor, las funciones tambien son tomadas en cuenta como un valor-->
+
+
+<!-- clase 02-->
+
+<!--1ra premisa react: Virtual DOM: es una representacion que hace React propia del DOM original, primero analiza los cambios de estado en los nodos, despues computa la diferencia (proceso de diffing) y por ultimo hace la reconciliacion de los cambios (el resultado).-->
+
+<!--modo heuritstico es un metodo (un camino) en el que se realizan la menor cantidad de movimientos necesarios-->
+
+<!--usando vanilla se modifica el DOM entero, en cambio React al hacer su propio DOM utiliza la tecnologia Fiber, que es tener en cuenta los nodos como fibras, y asi es que puede identificar que elementos estan siendo modificados y solo modificar esa parte del DOM-->
+
+<!--2da premisa react: Flujo de datos unidireccional: el flujo de los datos no va "de abajo hacia arriba", sino de arriba hacia abajo, osea, de los padres a los hijos, en lugar de adentro afuera como p->div->header, lo que hace es del padre al hijo header->div->p , pero los eventos se suelen pasar de abajo arriba, como los eventListeners-->
+
+<!--3ra premisa react:-->
+
+<!--NODE.JS: es un entornode ejecuccion de JS, lo cual permite ejecutar en nuestra computadora dandole un archivo .js, lo que nos ermite desarrollar aplicaciones en javascript del lado del servidor sin necesidad de un navegador. Una alternativa de node es Deno.js.-->
+
+<!--NPM (Node Package Manager) funciona de dos maneras, como un repositorio de proyectos node de código abierto, y como una herramienta de linea de comandos para instalar/desinstalar paquetes y gestionar versiones y dependencias necesarias -->
+
+<!--el CLI (interfaz de linea de comandos) es un metodo que permite a los usuarios dar instrucciones a algun programa informatico mediante lineas de texto simple-->
+
+
+<!-- crear el react desde la terminal:
+cd nombredellugar1/nombredellugar2/nombredelugarfinal   para posicionarte en la carpeta
+
+npm install -g create-react-app    para instalarlo
+
+create-react-app nombrede-laapp  para crearla   // o npx create-react-app nombredelaapp
+
+cd nombrede-laapp    para ir a la app
+
+npm start   para comenzar la magia.
+
+IMPORTANTE: siempre que queramos retomar el proyecto hay que volver a poner npm start, aunque ahora puede ser desde VS-->
+
+
+<!-- Clase 03-->
+
+<!--sugar syntax: formas más cortas de excribir codigo mientras que deja intacta la funcionalidad, esta echo para hacer más facil de leer y comprender el codigo-->
+
+<!--polyfill: replicar una funcionalidad que el navegador no tenga de manera nativa. No todos los navegadores funcionan igual ni tengan las mismas cosas, pero no vamos a hacer ocodigo individual para cada uno, por lo que se hace dentro del codigo-->
+
+<!--webpack: es un organizador que "agarra" todas las cosas que tiene el proyecto, y te devuelve el html, css y js-->
+
+<!--tanspiling: es como un traductor, osea, agarra un codigo fuente y genera otro codigo fuente similar, ejemplo, sass y css, sass se traduce a css ya que los navegadores no lo entienden-->
+
+<!--JSX: es un lenguaje como sass, pero en lugar de extender css lo hace con archivos de Javascript-->
+
+
+<!-- Clase 04-->
+
+<!--Componentes
+  Un componente es un conjunto de elementos que cumplen una funcion especifica en la interfaz de usuario, un componente puede tener componentes hijos dentro, construyendo jerarquia.
+  El diseño modular es la forma en la que funcionan las componentes, ya que al actuar de manera individual, es mas facil separar los integrantes de la pagina, que a su vez se ayudan para solucionar otros problemas.
+  Ventajas de este enfoque:
+. app mas sencilla de entender
+. favorece la separacion de responsabilidades
+. mejora el rendimiento de la app
+. simplifica las pruebas unitarias.
+
+Los componentes de react se crean a partir de funciones, lo que hace que sea mas facil de escribir y entender el codigo, ej: const Title = () => {return <h1> blabla </h1>}
+
+caracteristicas principales de los componentes: 
+. Pueden recibir propiedades
+. Tienen la capacidad de hacer render de un unico elemento
+. Pueden tener estados-->
+
+<!--Propiedades 
+ Se utilizan para pasar datos de un componente padre a un componente hijo de forma unidirecciona. Son objetos que contienen datos que un componente necesita para renderizarse correctamente, lo cual permite la reutilizacion de componentes en diferentes partes con diferentes datos-->
+MIN 10
+<!--Eventos 
+Al igual que en js existen los eventos, pero al hacerse por el DOM se manejan desde las funcionalidades de react y tienen su sintaxis especial.
+ Todos los eventos inician con el prefijo "on" y camelcase (ej: onClick, onChange, onBlur).
+React decide cuando se ejecutan, asi que solo se pasa la referencia de la funcion.
+Estas funciones tienen todas las caracteristicas de "event"
+
+ej: 
+const handleClick = () => {console.log("click")}
+
+onClick = {handleClick}    
+  -->
+
+<!--Estados
+ Los estados de un componente en react se utilizan para representar la informacion que se puede cambiar durante la vida util del componente y afectar su representacion en la interfaz de usuario.
+ Todo cambio de estado inicia el render a partir del nodo que se produjo el cambio y genera nuevo virtual DOM para ser reconciliado-->
+
+ <!--Hooks
+-->
+
+<!-- Clase 05: componentes 2-->
+
+<!--Propiedades
+YAAAA ENTENDIII, cuando haces la arrow function podemos ponerle por ej ({text}) y luego en el contenido ponerle {text}, y LUEGO cuando llamamos al componente en la app.js, le pasamos la prop text:{"tumami"}, para reciclar el componente pero no asi su contenido-->
+
+<!--Children prop
+se puede anidar contenido dentro del .jsx, ya que el componente recibe otro componente con prop children, lo que permite que queden como padre e hijo, pero sin que interactuen y asi podemos diseñar genericos sin que esten completamente acoplados (yo tampoco entendi un carajo).
+ Osea, hasta recien cuando pasabamos un componente era de etiqueta cerrada, pero se puede poner en la appjs como ewtiqueta abierta y ponerle contenido entre ambas, y react lo interpreta como children
+  ej:
+  //button.jsx
+  function button({text, children}){
+    return <div>{children}</div>
+  }
+
+  //app.js
+  <button text={ndsad} //propNormal>
+    texto children
+  </button>
+-->
+
+<!--LAYOUT
+ Ademas de componentes, podemos hacer un layout (estilo predefinido reutilizable) haciendo un "componente" que en simplemente tiene children en el centro (que vendria siendo todos los demas componentes que ponemos en la app), y le importamos estilos unicos de css para poder reutilizarlo
+
+func Layout ({children}){
+  return <div class="Layout"> {children} <div/>
+    (se supone que debemos tener un css donde estilemos .layout)
+}-->
+
+<!--HOOKS2
+
+  useRef: se utiliza para crear una referencia mutable (buscar explicacion, NO ENTENDI UN CARAJO)
+
+-->
+
+volver a ver la clase
